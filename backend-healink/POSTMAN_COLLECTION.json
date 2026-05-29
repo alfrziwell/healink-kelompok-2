@@ -1,0 +1,513 @@
+{
+  "info": {
+    "name": "Medical Records API - Postman Collection",
+    "description": "Complete API collection untuk testing Medical Records Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Health & Info",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/health",
+              "host": ["{{base_url}}"],
+              "path": ["api", "health"]
+            }
+          }
+        },
+        {
+          "name": "API Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/info",
+              "host": ["{{base_url}}"],
+              "path": ["api", "info"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  var jsonData = pm.response.json();",
+                  "  pm.environment.set('token', jsonData.data.token);",
+                  "  console.log('Token saved to environment');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \\\"username\\\": \\\"superadmin\\\",\\n  \\\"pw\\\": \\\"admin123\\\"\\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/profile",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \\\"id_rs\\\": 1,\\n  \\\"role\\\": \\\"admin\\\",\\n  \\\"username\\\": \\\"admin1\\\",\\n  \\\"pw\\\": \\\"password123\\\"\\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_rs\": 1,\n  \"role\": \"admin\",\n  \"username\": \"admin2\",\n  \"pw\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register Super Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_rs\": 1,\n  \"role\": \"super_admin\",\n  \"username\": \"superadmin2\",\n  \"pw\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Pasien (Patients)",
+      "item": [
+        {
+          "name": "Get All Pasien",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/pasien?page=1&limit=10&search=",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pasien"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Pasien by NIK",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/pasien/1234567890123456",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pasien", "1234567890123456"]
+            }
+          }
+        },
+        {
+          "name": "Create Pasien",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \\\"nik\\\": \\\"1234567890999999\\\",\\n  \\\"nama\\\": \\\"John Doe\\\",\\n  \\\"alamat\\\": \\\"Jl. Merdeka No. 5\\\",\\n  \\\"tgl_lahir\\\": \\\"1990-05-15\\\",\\n  \\\"jenis_kelamin\\\": \\\"L\\\"\\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pasien",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pasien"]
+            }
+          }
+        },
+        {
+          "name": "Update Pasien",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \\\"nama\\\": \\\"John Doe Updated\\\",\\n  \\\"alamat\\\": \\\"Jl. Sudirman No. 10\\\",\\n  \\\"tgl_lahir\\\": \\\"1990-05-15\\\",\\n  \\\"jenis_kelamin\\\": \\\"L\\\"\\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pasien/1234567890999999",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pasien", "1234567890999999"]
+            }
+          }
+        },
+        {
+          "name": "Delete Pasien",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/pasien/1234567890999999",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pasien", "1234567890999999"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Dokter (Doctors)",
+      "item": [
+        {
+          "name": "Get All Dokter",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dokter?page=1&limit=10&search=",
+              "host": ["{{base_url}}"],
+              "path": ["api", "dokter"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Dokter",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \\\"nama\\\": \\\"Dr. Ahmad Wijaya\\\",\\n  \\\"alamat\\\": \\\"Jl. Gatot Subroto No. 50\\\",\\n  \\\"nomor_telp\\\": \\\"0812-3456-7890\\\",\\n  \\\"id_rs\\\": 1\\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/dokter",
+              "host": ["{{base_url}}"],
+              "path": ["api", "dokter"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Rumah Sakit (Hospitals)",
+      "item": [
+        {
+          "name": "Get All Rumah Sakit",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/rumah-sakit?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "rumah-sakit"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Rumah Sakit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \\\"nama_rs\\\": \\\"RS Sejahtera\\\",\\n  \\\"alamat\\\": \\\"Jl. Gatot Subroto No. 123\\\",\\n  \\\"telepon\\\": \\\"021-5555-9999\\\"\\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/rumah-sakit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "rumah-sakit"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Diagnosa (Diagnosis)",
+      "item": [
+        {
+          "name": "Get All Diagnosa",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/diagnosa?page=1&limit=10&search=",
+              "host": ["{{base_url}}"],
+              "path": ["api", "diagnosa"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Diagnosa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \\\"tanggal\\\": \\\"2024-05-29T10:30:00\\\",\\n  \\\"id_rs\\\": 1,\\n  \\\"id_dokter\\\": 1,\\n  \\\"nik_pasien\\\": \\\"1234567890123456\\\",\\n  \\\"nama_diagnosa\\\": \\\"Diabetes Mellitus Type 2\\\",\\n  \\\"kriteria_ciri\\\": \\\"Kadar gula darah tinggi, sering haus, sering buang air kecil\\\",\\n  \\\"obat\\\": \\\"Metformin 500mg 2x sehari\\\"\\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/diagnosa",
+              "host": ["{{base_url}}"],
+              "path": ["api", "diagnosa"]
+            }
+          }
+        },
+        {
+          "name": "Get Diagnosa by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/diagnosa/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "diagnosa", "1"]
+            }
+          }
+        },
+        {
+          "name": "Query Blockchain Transaction",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/diagnosa/blockchain/abc123def456xyz",
+              "host": ["{{base_url}}"],
+              "path": ["api", "diagnosa", "blockchain", "abc123def456xyz"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}

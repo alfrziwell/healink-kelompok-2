@@ -1,0 +1,45 @@
+# Dependency directories
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# OS
+Thumbs.db
+
+# Fabric
+fabric/wallet/
+fabric/network_profile.json
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Build
+dist/
+build/
+
+# Runtime data
+.cache
