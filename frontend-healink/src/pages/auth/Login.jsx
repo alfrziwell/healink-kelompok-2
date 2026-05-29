@@ -91,7 +91,7 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Error Alert */}
               {errorMessage && (
-                <div className="rounded-xl border border-red-200/60 bg-gradient-to-r from-red-50 to-red-50/50 backdrop-blur-sm px-4 py-3 text-sm text-red-700 shadow-sm animate-slide-down">
+                <div className="rounded-xl border border-red-200/60 bg-linear-to-r from-red-50 to-red-50/50 backdrop-blur-sm px-4 py-3 text-sm text-red-700 shadow-sm animate-slide-down">
                   <p className="font-semibold mb-1">Login Gagal</p>
                   <p className="text-red-600">{errorMessage}</p>
                 </div>
@@ -149,7 +149,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-primary to-blue-600 hover:from-blue-700 hover:to-blue-700 disabled:from-slate-400 disabled:to-slate-400 disabled:cursor-not-allowed text-white font-bold py-3.5 px-6 rounded-lg transition duration-300 mt-6 text-base shadow-lg shadow-primary/30 hover:shadow-lg hover:shadow-primary/40 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2"
+                className="w-full bg-linear-to-r from-primary to-blue-600 hover:from-blue-700 hover:to-blue-700 disabled:from-slate-400 disabled:to-slate-400 disabled:cursor-not-allowed text-white font-bold py-3.5 px-6 rounded-lg transition duration-300 mt-6 text-base shadow-lg shadow-primary/30 hover:shadow-lg hover:shadow-primary/40 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

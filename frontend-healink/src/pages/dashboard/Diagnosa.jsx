@@ -184,7 +184,7 @@ const Diagnosa = () => {
     <DashboardLayout>
       <div className="space-y-6 max-w-3xl">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 bg-gradient-to-br from-primary to-indigo-500 rounded-full flex items-center justify-center">
+          <div className="w-14 h-14 bg-linear-to-br from-primary to-indigo-500 rounded-full flex items-center justify-center">
             <MdHealing className="text-white" size={28} />
           </div>
           <div>

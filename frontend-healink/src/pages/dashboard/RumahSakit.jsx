@@ -47,7 +47,7 @@ const RumahSakit = () => {
       rs.nama_rs?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       rs.alamat?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       rs.telepon?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    ).sort((a, b) => (a.nama_rs || '').localeCompare(b.nama_rs || '', 'id', { sensitivity: 'base' }));
   }, [rumahSakit, searchQuery]);
 
   // Pagination
@@ -172,7 +172,7 @@ const RumahSakit = () => {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-slate-200">
-                      <th className="text-left py-3 px-4 font-semibold text-slate-700">ID</th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700">No.</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700">Nama Rumah Sakit</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700">Alamat</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700">No. Telepon</th>
@@ -180,9 +180,9 @@ const RumahSakit = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {paginatedRumahSakit.map((rs) => (
+                    {paginatedRumahSakit.map((rs, index) => (
                       <tr key={rs.id_rs} className="border-b border-slate-100 hover:bg-slate-50 transition">
-                        <td className="py-3 px-4 text-slate-600">{rs.id_rs}</td>
+                        <td className="py-3 px-4 text-slate-600">{startIndex + index + 1}</td>
                         <td className="py-3 px-4 text-slate-900 font-medium">{rs.nama_rs}</td>
                         <td className="py-3 px-4 text-slate-600">{rs.alamat}</td>
                         <td className="py-3 px-4 text-slate-600">{rs.telepon}</td>

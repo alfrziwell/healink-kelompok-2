@@ -47,7 +47,7 @@ const Dokter = () => {
       d.nama?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       d.spesialisasi?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       d.rumahSakit?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    ).sort((a, b) => (a.nama || '').localeCompare(b.nama || '', 'id', { sensitivity: 'base' }));
   }, [dokter, searchQuery]);
 
   // Pagination
@@ -172,7 +172,7 @@ const Dokter = () => {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-slate-200">
-                      <th className="text-left py-3 px-4 font-semibold text-slate-700">ID</th>
+                      <th className="text-left py-3 px-4 font-semibold text-slate-700">No.</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700">Nama Dokter</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700">Alamat</th>
                       <th className="text-left py-3 px-4 font-semibold text-slate-700">No. Telepon</th>
@@ -180,9 +180,9 @@ const Dokter = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {paginatedDokter.map((d) => (
-                      <tr key={d.id} className="border-b border-slate-100 hover:bg-slate-50 transition">
-                        <td className="py-3 px-4 text-slate-600">{d.id_dokter}</td>
+                    {paginatedDokter.map((d, index) => (
+                      <tr key={d.id_dokter || d.id} className="border-b border-slate-100 hover:bg-slate-50 transition">
+                        <td className="py-3 px-4 text-slate-600">{startIndex + index + 1}</td>
                         <td className="py-3 px-4 text-slate-900 font-medium">{d.nama}</td>
                         <td className="py-3 px-4 text-slate-600">{d.alamat}</td>
                         <td className="py-3 px-4 text-slate-600">{d.nomor_telp}</td>
@@ -319,7 +319,7 @@ const Dokter = () => {
       {showDeleteModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full animate-slide-up">
-            <div className="bg-gradient-to-r from-red-50 to-red-50/50 p-6 border-b border-slate-200">
+            <div className="bg-linear-to-r from-red-50 to-red-50/50 p-6 border-b border-slate-200">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
                   <MdDelete className="text-red-600" size={24} />
