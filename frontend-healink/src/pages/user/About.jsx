@@ -2,14 +2,14 @@ import { HiSparkles, HiUsers, HiShieldCheck, HiClipboardList } from "react-icons
 import DitaFoto from "../../assets/img/our-team/dita.png";
 import ArhamFoto from "../../assets/img/our-team/arham.png";
 import RyanFoto from "../../assets/img/our-team/ryan.png";
-// import DitaFoto from "../../assets/img/our-team/dita.png";
+import AlifFoto from "../../assets/img/our-team/alif.png";
 
 const teamMembers = [
   {
     name: "Alif Alfarizi",
     nim: "105240003",
     role: "Insfrastruktur & DevOps",
-    avatarUrl: "https://i.pravatar.cc/150?img=10",
+    avatarUrl: AlifFoto,
   },
   {
     name: "Dita Ramadhanti",

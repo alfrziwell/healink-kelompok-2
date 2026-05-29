@@ -1,5 +1,5 @@
 import DashboardLayout from '../../layouts/DashboardLayout';
-import { MdCheckCircle, MdError } from 'react-icons/md';
+import { MdCheckCircle, MdError, MdPerson } from 'react-icons/md';
 import { useState } from 'react';
 import { createPasien } from '../../api/pasien';
 
@@ -40,69 +40,74 @@ const Pasien = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6 max-w-3xl">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-950 mb-2">
-            Pasien
-          </h1>
-          <p className="text-base text-slate-600">Tambah data pasien untuk kebutuhan integrasi Hyperledger Fabric</p>
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-gradient-to-br from-primary to-indigo-500 rounded-full flex items-center justify-center">
+            <MdPerson className="text-white" size={28} />
+          </div>
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-950 mb-1">Pasien</h1>
+            <p className="text-sm text-slate-600">Tambah data pasien untuk kebutuhan integrasi Hyperledger Fabric</p>
+          </div>
         </div>
 
         <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
           <form onSubmit={handleFormSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">NIK</label>
-              <input
-                type="text"
-                value={formData.nik}
-                onChange={(e) => setFormData({ ...formData, nik: e.target.value })}
-                className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
-                placeholder="Masukkan NIK"
-              />
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">NIK</label>
+                <input
+                  type="text"
+                  value={formData.nik}
+                  onChange={(e) => setFormData({ ...formData, nik: e.target.value })}
+                  className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
+                  placeholder="Masukkan NIK"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Nama Pasien</label>
-              <input
-                type="text"
-                value={formData.nama}
-                onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
-                className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
-                placeholder="Masukkan nama pasien"
-              />
-            </div>
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Nama Pasien</label>
+                <input
+                  type="text"
+                  value={formData.nama}
+                  onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
+                  className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
+                  placeholder="Masukkan nama pasien"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Alamat</label>
-              <input
-                type="text"
-                value={formData.alamat}
-                onChange={(e) => setFormData({ ...formData, alamat: e.target.value })}
-                className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
-                placeholder="Masukkan alamat"
-              />
-            </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Alamat</label>
+                <input
+                  type="text"
+                  value={formData.alamat}
+                  onChange={(e) => setFormData({ ...formData, alamat: e.target.value })}
+                  className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
+                  placeholder="Masukkan alamat"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Tanggal Lahir</label>
-              <input
-                type="date"
-                value={formData.tgl_lahir}
-                onChange={(e) => setFormData({ ...formData, tgl_lahir: e.target.value })}
-                className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
-              />
-            </div>
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Tanggal Lahir</label>
+                <input
+                  type="date"
+                  value={formData.tgl_lahir}
+                  onChange={(e) => setFormData({ ...formData, tgl_lahir: e.target.value })}
+                  className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Jenis Kelamin</label>
-              <select
-                value={formData.jenis_kelamin}
-                onChange={(e) => setFormData({ ...formData, jenis_kelamin: e.target.value })}
-                className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
-              >
-                <option value="">Pilih jenis kelamin</option>
-                <option value="L">Laki-laki</option>
-                <option value="P">Perempuan</option>
-              </select>
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Jenis Kelamin</label>
+                <select
+                  value={formData.jenis_kelamin}
+                  onChange={(e) => setFormData({ ...formData, jenis_kelamin: e.target.value })}
+                  className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 bg-slate-50/50"
+                >
+                  <option value="">Pilih jenis kelamin</option>
+                  <option value="L">Laki-laki</option>
+                  <option value="P">Perempuan</option>
+                </select>
+              </div>
             </div>
 
             <div className="flex gap-3 pt-4">
@@ -111,7 +116,17 @@ const Pasien = () => {
                 disabled={loading}
                 className="flex-1 px-4 py-2.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? 'Menyimpan...' : 'Simpan'}
+                {loading ? (
+                  <span className="inline-flex items-center gap-2 justify-center">
+                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                    </svg>
+                    Menyimpan...
+                  </span>
+                ) : (
+                  'Simpan'
+                )}
               </button>
             </div>
           </form>

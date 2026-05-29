@@ -79,12 +79,6 @@ export default function Sidebar() {
               badge: null,
             },
             {
-              name: 'Dokter',
-              icon: MdPerson,
-              path: '/dokter',
-              badge: null,
-            },
-            {
               name: 'Pasien',
               icon: MdAccessibilityNew,
               path: '/pasien',
@@ -230,7 +224,7 @@ export default function Sidebar() {
           <div className="bg-white rounded-2xl p-8 max-w-sm mx-4 shadow-2xl animate-slide-up overflow-hidden">
             {/* Header with Icon */}
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-50 to-red-100 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-linear-to-br from-red-50 to-red-100 rounded-full flex items-center justify-center">
                 <MdLogout size={32} className="text-red-600" />
               </div>
             </div>
@@ -267,7 +261,7 @@ export default function Sidebar() {
               <button
                 onClick={handleLogout}
                 disabled={isLoading}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-3 bg-linear-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isLoading ? (
                   <>
